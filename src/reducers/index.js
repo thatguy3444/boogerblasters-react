@@ -1,7 +1,7 @@
-import { isAwesome } from './testbutton';
+import { testbutton } from './testbutton';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  isAwesome,
+  testbutton,
 });
 export default rootReducer;
