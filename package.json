@@ -9,6 +9,7 @@
     "eslint-plugin-react": "^6.10.3",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "mongodb": "^2.2.26",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
