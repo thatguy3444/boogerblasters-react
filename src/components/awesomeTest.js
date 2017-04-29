@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setButtonState, toggleButtonState } from './actions/testbutton';
+import { setButtonState, toggleButtonState } from '../actions/testbutton';
 import style from './awesomeTest.css';
 
 class AwesomeTest extends Component {

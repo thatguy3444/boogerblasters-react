@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import style from './App.css';
-import AwesomeTest from './awesomeTest';
+import AwesomeTest from './components/awesomeTest';
 
 class App extends Component {
   render() {
