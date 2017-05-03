@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setButtonState, toggleButtonState } from './actions/testbutton';
@@ -8,6 +9,11 @@ class AwesomeTest extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      diceArray: [
+        { backgroundColor: '#222fff' },
+        { backgroundColor: '#9911CC' },
+        { backgroundColor: '#ee33aa' },
+      ],
     };
   }
   render() {
@@ -44,9 +50,12 @@ class AwesomeTest extends Component {
             return this.props.isAwesomeBool ? (<div>Woot</div>) : (<div>NOOO</div>);
           })()
         }
+
         <div className={style.awesomeStyle} onClick={this.props.awesomeOn} />
         <div style={letterStyle} onClick={this.props.awesomeOff} />
         <div style={letterStyle2} onClick={this.props.awesomeToggle} />
+
+        { _.map(this.state.diceArray, diceStyle => <div style={Object.assign({}, diceStyle, { height: '50', width: '50' })} />) }
       </div>
     );
   }
