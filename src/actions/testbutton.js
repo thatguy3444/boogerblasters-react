@@ -9,8 +9,6 @@ export const setButtonState = (boolValue) => {
   };
 };
 
-export const toggleButtonState = () => {
-  return {
-    type: TOGGLE_BUTTON_STATE,
-  };
-};
+export const toggleButtonState = () => ({
+  type: TOGGLE_BUTTON_STATE,
+});
