@@ -1,22 +1,52 @@
 import moment from 'moment';
 
-export const REQUEST_ROLL = 'apiRandomDice/REQUEST_ROLL';
-export const RECEIVE_ROLL = 'apiRandomDice/RECEIVE_ROLL';
+export const ROLL_SENT = 'apiRandomDice/ROLL_SENT';
+export const ROLL_RECEIVED = 'apiRandomDice/ROLL_RECEIVED';
+export const ROLL_ERROR = 'apiRandomDice/ROLL_ERROR';
 
-export const requestRoll = (numDice) => {
-  console.log('Requesting Roll-NumDice: ', numDice);
+const ROLL_CALL_URL = '';
+
+export const rollSent = (numDice) => {
+  console.log('Sent Roll-NumDice: ', numDice);
   return {
-    type: REQUEST_ROLL,
+    type: ROLL_SENT,
     numDice,
+    sentAt: moment().valueOf(),
   };
 };
 
-export const receiveRoll = (numDice, json) => {
+export const rollReceived = ({ numDice, roll }) => {
   console.log('Received Roll-NumDice: ', numDice);
   return {
-    type: RECEIVE_ROLL,
+    type: ROLL_RECEIVED,
     numDice,
-    roll: json.data.roll,
-    receivedAt: moment().valueOf(),
+    roll,
+    completeAt: moment().valueOf(),
   };
 };
+
+export const rollError = (errorMessage) => {
+  console.log('Error Rolling-NumDice: ', numDice);
+  return {
+    type: ROLL_ERROR,
+    completeAt: moment().valueOf(),
+    errorMessage,
+  };
+};
+
+export function callRequestRoll(numDice) {
+  return (dispatch) => {
+    dispatch(rollSent(numDice));
+
+    fetch(ROLL_CALL_URL)
+      .then((response) => {
+        if (!response.ok) {
+          dispatch(rollError(response.statusText));
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(responseJSON => dispatch(rollReceived(responseJSON)))
+      .catch(err => dispatch(rollError(err)));
+  };
+}
